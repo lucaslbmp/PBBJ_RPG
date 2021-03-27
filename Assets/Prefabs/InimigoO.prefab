@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8191528742388376686}
   - component: {fileID: 8132805638290607931}
   - component: {fileID: 8757916032099106865}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: InimigoO
   m_TagString: Inimigo
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 656352065
-  m_SortingLayer: 1
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -5715665648334919229, guid: 17682b206fd8a5340abd6f76b1668033, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
