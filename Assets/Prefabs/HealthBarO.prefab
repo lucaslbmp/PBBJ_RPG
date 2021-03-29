@@ -265,13 +265,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2359167035442472582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fcd38eed9cc83043823de30fa86adee, type: 3}
+  m_Script: {fileID: 11500000, guid: 5475f233b6b51db4389dfed6ca44617d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontosDano: {fileID: 11400000, guid: 50298f828ed541247ae017749295ed01, type: 2}
-  player: {fileID: 0}
+  pontosDano: {fileID: 11400000, guid: 2604dc2132f9989418e6c3d013b3e69c, type: 2}
+  caractere: {fileID: 1936312154, guid: 22edf6df07f20f842adc5c91c590c5d0, type: 3}
   medidorImagem: {fileID: 2359167036084294173}
-  pdtexto: {fileID: 2359167034881245621}
+  pdTexto: {fileID: 2359167034881245621}
 --- !u!1 &2359167036060892576
 GameObject:
   m_ObjectHideFlags: 0

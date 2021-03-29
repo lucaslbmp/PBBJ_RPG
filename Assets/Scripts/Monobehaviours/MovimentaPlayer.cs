@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class MovimentaPlayer : MonoBehaviour
 {
-    public float VelocidadeMovimento = 3f; // equivale ao momento (impulso)
+
+    public float VelocidadeMovimento = 3.0f; // equivale ao momento (impulso) a ser dado ao player
     Vector2 Movimento = new Vector2(); // detectar movimento pelo teclado
 
-    Rigidbody2D rb2D; // guarda o componente corpo rigido do player
-    string estadoAnimacao = "EstadoAnimacao"; // variavel que guarda o nome do parametro de Animacao
-    Animator animator;
+    Animator animator; // guarda a componente do Controlador de Animação
+    string estadoAnimacao = "EstadoAnimacao"; // Guarda o nome do parâmetro de Animação
+
+    Rigidbody2D rb2D; // guarda a componente CorpoRígido do Player
 
     enum EstadosCaractere
     {
@@ -17,15 +19,16 @@ public class MovimentaPlayer : MonoBehaviour
         andaOeste = 2,
         andaNorte = 3,
         andaSul = 4,
-        idle = 5,
+        idle = 5
     }
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb2D = GetComponent<Rigidbody2D>(); // obtem o componete corpo rigido do player
+        rb2D = GetComponent<Rigidbody2D>();        
     }
 
     // Update is called once per frame
@@ -39,7 +42,7 @@ public class MovimentaPlayer : MonoBehaviour
         MoveCaractere();
     }
 
-    void MoveCaractere()
+    private void MoveCaractere()
     {
         Movimento.x = Input.GetAxisRaw("Horizontal");
         Movimento.y = Input.GetAxisRaw("Vertical");
@@ -69,5 +72,7 @@ public class MovimentaPlayer : MonoBehaviour
         {
             animator.SetInteger(estadoAnimacao, (int)EstadosCaractere.idle);
         }
+
+
     }
 }

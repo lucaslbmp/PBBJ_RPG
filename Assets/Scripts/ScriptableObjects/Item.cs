@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Item")]
+[CreateAssetMenu(menuName = "Item")]
 
 public class Item : ScriptableObject
 {
@@ -10,9 +10,12 @@ public class Item : ScriptableObject
     public Sprite sprite;
     public int quantidade;
     public bool empilhavel;
-    public enum TipoItem { 
+
+    public enum TipoItem
+    {
         MOEDA,
         HEALTH
     }
+
     public TipoItem tipoItem;
 }

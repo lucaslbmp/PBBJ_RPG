@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb9b203fd7bf16d4cacb64b44287aad0, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d42261febc0b9a4c8baafad719639fc, type: 3}
   m_Name: PontosDano
   m_EditorClassIdentifier: 
-  valor: 4
+  valor: 2

@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: -5129163934680140974}
   - component: {fileID: 446548605666217767}
   - component: {fileID: 1936312154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerO
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4946490079052811939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95549e2bab2b72349a0d54f746179013, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dbe208d43bf5fd4ab81537b23ef6d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   VelocidadeMovimento: 3
@@ -175,11 +175,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4946490079052811939}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb86a800b1c6e648b9bb936758e4eae, type: 3}
+  m_Script: {fileID: 11500000, guid: c69dcbe02ff0a1f41ab7f43d1d1193f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pontosDano: {fileID: 11400000, guid: 50298f828ed541247ae017749295ed01, type: 2}
   inicioPontosDano: 5
   MaxPontosDano: 10
   inventarioPrefab: {fileID: 1266192141388139987, guid: 7c47244c92168b045a92afea3d034b45, type: 3}
   healthBarPrefab: {fileID: 1092302474, guid: 73411ac37a158fd45b926bb1df02d46e, type: 3}
+  pontosDano: {fileID: 11400000, guid: 2604dc2132f9989418e6c3d013b3e69c, type: 2}
