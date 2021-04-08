@@ -51,6 +51,7 @@ public class Inimigo : Caractere
     {
         while (true)
         {
+            StartCoroutine(FlickerCaractere());
             pontosVida = pontosVida - dano;
 
             if(pontosVida <= float.Epsilon)

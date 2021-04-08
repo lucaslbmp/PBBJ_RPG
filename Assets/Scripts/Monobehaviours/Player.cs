@@ -23,6 +23,7 @@ public class Player : Caractere
     {
         while (true)
         {
+            StartCoroutine(FlickerCaractere());
             pontosDano.valor = pontosDano.valor - dano;
 
             if(pontosDano.valor <= float.Epsilon)
