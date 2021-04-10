@@ -10,8 +10,7 @@ public class Inventario : MonoBehaviour
     Item[] itens = new Item[numSlots]; // array de itens
     GameObject[] slots = new GameObject[numSlots]; // array de Slots
 
-    public Dictionary<string, int> itensColetados = new Dictionary<string, int>();
-    private string nomeColetavel;
+    public Dictionary<string, int> itensColetados = new Dictionary<string, int>(); // dicionario de itens coletados pelo player na cena atual
 
     private void Awake()
     {
@@ -60,6 +59,10 @@ public class Inventario : MonoBehaviour
                 itens[i].quantidade = 1;
                 itemImagens[i].sprite = itemToAdd.sprite;
                 itemImagens[i].enabled = true;
+                Slot slotScript = slots[i].gameObject.GetComponent<Slot>();
+                Text quantidadeTexto = slotScript.qtdTexto;
+                quantidadeTexto.enabled = true;
+                quantidadeTexto.text = itens[i].quantidade.ToString("00");
                 AtualizarListaColetaveis(itemToAdd.tipoItem.ToString());
                 //GameManager.ImprimeListaColetaveis(itensColetados);
                 return true;
@@ -86,7 +89,7 @@ public class Inventario : MonoBehaviour
         for (int i = 0; i < itens.Length; i++)
         {
             itens[i] = null;
-            itensColetados = new Dictionary<string, int>();
         }
+        itensColetados = new Dictionary<string, int>();
     }
 }

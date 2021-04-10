@@ -11,8 +11,13 @@ public class Player : Caractere
 
     public PontosDano pontosDano; // tem o valor da "saúde" do player
 
+    public ItensParaColetar itensParaColetarPrefab;
+    ItensParaColetar itensParaColetar;
+
     private void Start()
     {
+        itensParaColetar = Instantiate(itensParaColetarPrefab);
+        itensParaColetar.AtualizarCanvas();
         inventario = Instantiate(inventarioPrefab);
         pontosDano.valor = inicioPontosDano;
         healthBar = Instantiate(healthBarPrefab);
@@ -66,25 +71,35 @@ public class Player : Caractere
             Item DanoObjeto = collision.gameObject.GetComponent<Consumable>().item;
             if(DanoObjeto != null)
             {
-                bool DeveDesaparecer = false;
+                bool DeveDesaparecer = false; // Flag que sinaliza se o objeto com o qual se colidiu deve ser destruído ao final do evento de colisão
                 //print("Acertou: " + DanoObjeto.NomeObjeto);
-                switch (DanoObjeto.tipoItem)
+                switch (DanoObjeto.tipoItem) // confere o tipo de coletável com o qual o player colidiu
                 {
                     case Item.TipoItem.MOEDA:
                         // DeveDesaparecer = true;
-                        DeveDesaparecer = inventario.AddItem(DanoObjeto);
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar moeda ao inventario
                         break;
                     case Item.TipoItem.HEALTH:
-                        DeveDesaparecer = AjustePontosDano(DanoObjeto.quantidade);
+                        DeveDesaparecer = AjustePontosDano(DanoObjeto.quantidade); // ajustar saude do player
+                        break;
+                    case Item.TipoItem.DIAMANTE:
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar diamante ao inventario
+                        break;
+                    case Item.TipoItem.CHAVE:
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar chave ao inventario
+                        break;
+                    case Item.TipoItem.PERGAMINHO:
+                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar pergaminho ao inventario
                         break;
                     default:
                         break;
                 }
-                if (DeveDesaparecer)
+                if (DeveDesaparecer) 
                 {
-                    collision.gameObject.SetActive(false);
+                    collision.gameObject.SetActive(false); // desabilita (remove) o gameobject com o qual o player colidiu
                 }
                 GameManager.itensColetados = inventario.itensColetados;   // atualizando dicionario de itens coletados em GameManager
+                itensParaColetar.AtualizarCanvas();
             }
         }
     }

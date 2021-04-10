@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
 
     public PontoSpawn playerPontoSpawn;
 
-    Dictionary<string, int> dicionarioColetaveis;
-    public static Dictionary<string, int> itensColetados; 
+    [HideInInspector]public static Dictionary<string, int> dicionarioColetaveis;
+    [HideInInspector]public static Dictionary<string, int> itensColetados; 
 
     public enum Nivel
     {
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
     {
         return dicionarioColetaveis.Count == itensColetados.Count && 
             !dicionarioColetaveis.Except(itensColetados).Any() &&
-            dicionarioColetaveis.Count > 0 && itensColetados.Count > 0; // compara os dicionarios 
+            dicionarioColetaveis.Count > 0 && itensColetados.Count > 0; // compara os dicionarios de itens coletados e itens na cena
     }
 
     // Update is called once per frame

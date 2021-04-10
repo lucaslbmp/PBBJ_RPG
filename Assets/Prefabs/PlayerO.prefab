@@ -184,6 +184,7 @@ MonoBehaviour:
   inventarioPrefab: {fileID: 1266192141388139987, guid: 7c47244c92168b045a92afea3d034b45, type: 3}
   healthBarPrefab: {fileID: 1092302474, guid: 73411ac37a158fd45b926bb1df02d46e, type: 3}
   pontosDano: {fileID: 11400000, guid: 2604dc2132f9989418e6c3d013b3e69c, type: 2}
+  itensParaColetarPrefab: {fileID: 5351191591665367141, guid: e7d6da28af57ce643b27745766782c6b, type: 3}
 --- !u!114 &-861082688558901875
 MonoBehaviour:
   m_ObjectHideFlags: 0
