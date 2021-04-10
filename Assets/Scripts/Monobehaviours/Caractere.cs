@@ -21,6 +21,13 @@ public abstract class Caractere : MonoBehaviour
 
     public abstract IEnumerator DanoCaractere(int dano, float intervalo);
 
+    //public virtual IEnumerator CaractereFala(string mensagem, float duracao)
+    //{
+    //    GameManager.ExibirMensagem(mensagem);
+    //    if(duracao > 0f)
+    //        yield return new WaitForSeconds(duracao);
+    //}
+
     public virtual void KillCaractere()
     {
         Destroy(gameObject);

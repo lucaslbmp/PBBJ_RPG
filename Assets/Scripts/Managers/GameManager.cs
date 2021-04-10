@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public PontoSpawn playerPontoSpawn;
 
     [HideInInspector]public static Dictionary<string, int> dicionarioColetaveis;
-    [HideInInspector]public static Dictionary<string, int> itensColetados; 
+    [HideInInspector]public static Dictionary<string, int> itensColetados;
+
+    public MensagemCanvas mensagemCanvasPrefab;
+    [HideInInspector] public static MensagemCanvas mensagemCanvas;
 
     public enum Nivel
     {
@@ -48,11 +51,14 @@ public class GameManager : MonoBehaviour
 
     public void SetupScene()
     {
+        /// Configura a cena
+        mensagemCanvas = Instantiate(mensagemCanvasPrefab);
         SpawnPlayer();
     }
 
     public void SpawnPlayer()
     {
+        /// Instancia o player
         if(playerPontoSpawn != null)
         {
             GameObject player = playerPontoSpawn.SpawnO();
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     Nivel GetNivelAtual()
     {
+        /// Retorna o nível correspondete à cena atual
         string nomeCenaCorrente = SceneManager.GetActiveScene().name;
         foreach (Nivel nivel in Enum.GetValues(typeof(Nivel)))
         {
@@ -76,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     void ContarColetaveis()
     {
+        /// Função que conta quantos coletáveis existem na cena
         GameObject[] coletaveis = GameObject.FindGameObjectsWithTag("Coletavel");
         foreach (GameObject c in coletaveis)
         {
@@ -98,18 +106,24 @@ public class GameManager : MonoBehaviour
 
     public static void ImprimeListaColetaveis(Dictionary<string,int> coletaveis)
     {
+        /// Função que exibe um dicionario de coletáveis com suas respectivas quantidades
         foreach (KeyValuePair<string, int> c in coletaveis)
         {
             print(c);
         }
     }
 
-
-    public bool PegouColetaveisTodos() // detecta se o player pegou todos os coletaveis da cena
+    public bool PegouColetaveisTodos() 
     {
+        /// Funçao que detecta se o player pegou todos os coletaveis da cena
         return dicionarioColetaveis.Count == itensColetados.Count && 
             !dicionarioColetaveis.Except(itensColetados).Any() &&
             dicionarioColetaveis.Count > 0 && itensColetados.Count > 0; // compara os dicionarios de itens coletados e itens na cena
+    }
+
+    public static void ExibirMensagem(string mensagem)
+    {
+        mensagemCanvas.AtualizarCanvas(mensagem);
     }
 
     // Update is called once per frame
@@ -118,13 +132,13 @@ public class GameManager : MonoBehaviour
         //ImprimeListaColetaveis(dicionarioColetaveis);
         //inventario = player.GetInventario();
         //ImprimeListaColetaveis(itensColetados);
-        if (PegouColetaveisTodos())
+        if (PegouColetaveisTodos()) // Se o player pegou todos os coletaveis na cena
         {
-            nivelAtual++;
+            nivelAtual++; // altera para próxima fase
             //print(nivelAtual);
-            itensColetados = new Dictionary<string, int>();
-            Destroy(GameObject.Find("PlayerPontoSpawn"));
-            SceneManager.LoadScene(nivelAtual.ToString());
+            itensColetados = new Dictionary<string, int>(); // reseta o dicionario de itens coletados
+            Destroy(GameObject.Find("PlayerPontoSpawn")); // destroi o spawnpoint do player 
+            SceneManager.LoadScene(nivelAtual.ToString()); // carrega próxima fase
         }
     }
 }
