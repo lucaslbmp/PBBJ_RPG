@@ -80,11 +80,11 @@ public class Player : Caractere
                     default:
                         break;
                 }
-
                 if (DeveDesaparecer)
                 {
                     collision.gameObject.SetActive(false);
                 }
+                GameManager.itensColetados = inventario.itensColetados;   // atualizando dicionario de itens coletados em GameManager
             }
         }
     }
@@ -99,5 +99,10 @@ public class Player : Caractere
         }
         else
             return false;
+    }
+
+    public Inventario GetInventario()
+    {
+        return inventario;
     }
 }

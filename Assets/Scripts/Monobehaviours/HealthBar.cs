@@ -9,8 +9,11 @@ public class HealthBar : MonoBehaviour
     public Text pdTexto; // recebe os dados de PD
     float maxPontosDano; // armazena a quantidade limite de "saúde" do Player
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
-    // Start is called before the first frame update
     void Start()
     {
         //print(caractere);

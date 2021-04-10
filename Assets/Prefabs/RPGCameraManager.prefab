@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1488917580664319583
+--- !u!1 &3447020451209884460
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,42 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1488917580664319580}
-  - component: {fileID: 7163811097785703186}
+  - component: {fileID: 3447020451209884462}
+  - component: {fileID: 3447020451209884463}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: RPGCameraManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1488917580664319580
+--- !u!4 &3447020451209884462
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488917580664319583}
+  m_GameObject: {fileID: 3447020451209884460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.1546607, y: 0.24810308, z: -1.1638851}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7163811097785703186
+--- !u!114 &3447020451209884463
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1488917580664319583}
+  m_GameObject: {fileID: 3447020451209884460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 862b5c0a359a6fc4daf5dd6eb1875723, type: 3}
+  m_Script: {fileID: 11500000, guid: 29011fcbf966a6747837346ecdbbeaa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraManager: {fileID: 2923198874830634878, guid: ea0d944dde3d15844a77958589d1d294, type: 3}
-  playerPontoSpawn: {fileID: 6792097440143553501, guid: e04a83c3c7f325c4d899520140b9e1e0, type: 3}
-  player: {fileID: 1936312154, guid: 22edf6df07f20f842adc5c91c590c5d0, type: 3}
-  nivelCorrente: 0
+  virtualCamera: {fileID: 0}

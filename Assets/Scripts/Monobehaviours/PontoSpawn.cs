@@ -7,11 +7,12 @@ public class PontoSpawn : MonoBehaviour
     public GameObject prefabParaSpawn;
 
     public float intervaloRepeticao;
-    // Start is called before the first frame update
+   
     void Start()
     {
         if(intervaloRepeticao > 0)
         {
+            //print(this.gameObject);
             InvokeRepeating("SpawnO", 0.0f, intervaloRepeticao);
         }
     }

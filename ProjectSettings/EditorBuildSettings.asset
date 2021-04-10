@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/Rpg_lvl_01.unity
+    guid: 72ff35b6517a96b46a41c3aebd4d7d8b
+  - enabled: 1
+    path: Assets/Scenes/Rpg_lvl_02.unity
+    guid: 2e1ddba5d73677d43bb57ed208f4210f
+  - enabled: 1
+    path: Assets/Scenes/Rpg_lvl_03.unity
+    guid: c81feb04861b7b449935a5de987e9b23
   m_configObjects: {}
