@@ -8,7 +8,7 @@ public class Municao : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision is BoxCollider2D)
+        if(collision is BoxCollider2D && collision.gameObject.GetComponent<Inimigo>() != null)
         {
             Inimigo inimigo = collision.gameObject.GetComponent<Inimigo>();
             print(inimigo);

@@ -19,11 +19,17 @@ public class PontoSpawn : MonoBehaviour
 
     public GameObject SpawnO()
     {
-        if(prefabParaSpawn != null)
+        if(prefabParaSpawn != null && ContarObjetosNaCena()<12)
         {
             return Instantiate(prefabParaSpawn, transform.position, Quaternion.identity);
         }
         return null;
+    }
+
+    int ContarObjetosNaCena()
+    {
+        string tag = prefabParaSpawn.tag;
+        return GameObject.FindGameObjectsWithTag(tag).Length; // retorna quantidade de objetos com a tag do prefab na cena
     }
 
     // Update is called once per frame

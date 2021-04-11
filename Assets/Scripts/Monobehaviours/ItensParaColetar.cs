@@ -12,10 +12,6 @@ public class ItensParaColetar : MonoBehaviour
     //Dictionary<string, int> itensNaCena; // dicionario de itens a serem coletados pelo player na cena atual
     //Dictionary<string, int> itensColetados; // dicionario de itens já coletados pelo player na cena atual
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
 
     void Start()
     {

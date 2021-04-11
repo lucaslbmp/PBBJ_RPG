@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 862b5c0a359a6fc4daf5dd6eb1875723, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraManager: {fileID: 2923198874830634878, guid: ea0d944dde3d15844a77958589d1d294, type: 3}
+  cameraManager: {fileID: 3447020451209884463, guid: 347783066d32f1c4c9fcd85ff256fc0d, type: 3}
   playerPontoSpawn: {fileID: 6792097440143553501, guid: e04a83c3c7f325c4d899520140b9e1e0, type: 3}
-  player: {fileID: 1936312154, guid: 22edf6df07f20f842adc5c91c590c5d0, type: 3}
-  nivelCorrente: 0
+  mensagemCanvasPrefab: {fileID: 130526180548651230, guid: fa27111287b3d40489b0e652462d0e4a, type: 3}
+  nivelAtual: 0

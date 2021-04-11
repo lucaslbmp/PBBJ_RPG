@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Anciao : Caractere 
 { 
-    float pontosVida; //equivalente à saude do inimigo
-    public int forcaDano; // poder de dano
+    float pontosVida; //  equivalente à saude do inimigo
+    public float duracaoMensagem; // tempo de exibiçao da fala do caractere
 
     Coroutine mensagemCoroutine;
     protected bool tocouPlayer; 
@@ -23,26 +23,31 @@ public class Anciao : Caractere
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) // Se o objeto com o qual o caractere colidiu foi o player...
         {
-            Player player = collision.gameObject.GetComponent<Player>();
-            if (mensagemCoroutine == null)
+            if (mensagemCoroutine == null) // Se a corrotina de fala nao se iniciou
             {
-                mensagemCoroutine = StartCoroutine(CaractereFala("Use a chave para localizar o pergaminho!", 1.0f));
+                mensagemCoroutine = StartCoroutine(CaractereFala("ANCIÃO: Use a chave para localizar o pergaminho!", duracaoMensagem)); // inicie a corrotina de fala do caractere
             }
+        }
+        else
+        {
+            if(!collision.gameObject.CompareTag("Inimigo"))
+                gameObject.GetComponent<Perambular>().Retornar(true); // Se o caractere colidir com um objeto, retornar (i.e., dar meia-volta)
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (mensagemCoroutine != null)
-            {
-                StopCoroutine(mensagemCoroutine);
-                mensagemCoroutine = null;
-            }
-        }
+        gameObject.GetComponent<Perambular>().Retornar(false); // Se o caractere deixar de colidir com um objeto, parar de retornar
+        //if (collision.gameObject.CompareTag("Player"))
+        //{
+        //    if (mensagemCoroutine != null)
+        //    {
+        //        StopCoroutine(mensagemCoroutine);
+        //        mensagemCoroutine = null;
+        //    }
+        //}
     }
 
     public override IEnumerator DanoCaractere(int dano, float intervalo)
@@ -81,6 +86,8 @@ public class Anciao : Caractere
             GameManager.ExibirMensagem("");
             tocouPlayer = true;
         }
+        if (mensagemCoroutine != null)
+            StopCoroutine(mensagemCoroutine);
     }
 
     public override void ResetCaractere()

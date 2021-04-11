@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4730935493072705477
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1174827867635122389, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: prefabParaSpawn
+      value: 
+      objectReference: {fileID: 6820898373952562420, guid: a3e9f23102d36e4498bae64e7a5b7d06, type: 3}
+    - target: {fileID: 1174827867635122389, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: intervaloRepeticao
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3888581708735015782, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8051115648548598141, guid: 46dac09358ff19a42b963822923395da, type: 3}
+      propertyPath: m_Name
+      value: MorcegoPontoSpawn
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46dac09358ff19a42b963822923395da, type: 3}

@@ -137,7 +137,8 @@ public class GameManager : MonoBehaviour
             nivelAtual++; // altera para próxima fase
             //print(nivelAtual);
             itensColetados = new Dictionary<string, int>(); // reseta o dicionario de itens coletados
-            Destroy(GameObject.Find("PlayerPontoSpawn")); // destroi o spawnpoint do player 
+            //Destroy(GameObject.Find("PlayerPontoSpawn")); // destroi o spawnpoint do player
+            
             SceneManager.LoadScene(nivelAtual.ToString()); // carrega próxima fase
         }
     }
