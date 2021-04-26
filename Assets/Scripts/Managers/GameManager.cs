@@ -139,23 +139,28 @@ public class GameManager : MonoBehaviour
 
     public void CarregarCreditos()
     {
-        SceneManager.LoadScene("Lab5_RPGCreditos");
+        SceneManager.LoadScene("RPG_Creditos");
+    }
+
+    public static void CarregarGameOver()
+    {
+        SceneManager.LoadScene("RPG_GameOver");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ImprimeListaColetaveis(dicionarioColetaveis);
-        //inventario = player.GetInventario();
-        //ImprimeListaColetaveis(itensColetados);
-        if (PegouColetaveisTodos()) // Se o player pegou todos os coletaveis na cena
+        if (PegouColetaveisTodos())                             // Se o player pegou todos os coletaveis na cena
         {
-            nivelAtual++; // altera para próxima fase
-            //print(nivelAtual);
-            itensColetados = new Dictionary<string, int>(); // reseta o dicionario de itens coletados
-            //Destroy(GameObject.Find("PlayerPontoSpawn")); // destroi o spawnpoint do player
-            
-            SceneManager.LoadScene(nivelAtual.ToString()); // carrega próxima fase
+            Nivel novoNivel = ++nivelAtual;                    // novoNivel recebe o próximo nível
+            //if (!Enum.IsDefined(typeof(Nivel), novoNivel+1))   // Checa se o nível subsequente ao proximo nível nao existe, i. e., se o proximo nivel é o ultimo
+            //{
+            //    print("Entrei");
+            //    Player player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();      // Encontra o player
+            //    player.RemoveCaractere();                                                               // Remove o player e seus objetos instanciados
+            //}
+            itensColetados = new Dictionary<string, int>();                                             // reseta o dicionario de itens coletados           
+            SceneManager.LoadScene(novoNivel.ToString());                                               // carrega próxima fase
         }
     }
 }

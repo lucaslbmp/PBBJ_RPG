@@ -12,11 +12,6 @@ public class Inventario : MonoBehaviour
 
     public Dictionary<string, int> itensColetados = new Dictionary<string, int>(); // dicionario de itens coletados pelo player na cena atual
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
-
     void Start()
     {
         CriaSlots();

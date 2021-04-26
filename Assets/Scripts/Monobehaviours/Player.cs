@@ -53,6 +53,14 @@ public class Player : Caractere
         base.KillCaractere();
         Destroy(healthBar.gameObject);
         Destroy(inventario.gameObject);
+        GameManager.CarregarGameOver();
+    }
+
+    public void RemoveCaractere()
+    {
+        base.KillCaractere();
+        Destroy(healthBar.gameObject);
+        Destroy(inventario.gameObject);
     }
 
     public override void ResetCaractere()

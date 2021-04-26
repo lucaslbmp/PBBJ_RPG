@@ -7,10 +7,10 @@ public class MensagemCanvas : MonoBehaviour
 {
     public Text mensagemTxt;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(this.gameObject);
-    }
+    //private void Awake()
+    //{
+    //    DontDestroyOnLoad(this.gameObject);
+    //}
 
     void Start()
     {
