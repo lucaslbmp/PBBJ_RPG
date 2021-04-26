@@ -17,7 +17,9 @@ public class Item : ScriptableObject
         HEALTH,
         DIAMANTE,
         CHAVE,
-        PERGAMINHO
+        PERGAMINHO,
+        LIVRO,
+        COROA
     }
 
     public TipoItem tipoItem;

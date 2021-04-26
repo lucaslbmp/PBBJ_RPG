@@ -21,7 +21,7 @@ public class Inimigo : Caractere
         ResetCaractere();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -33,7 +33,7 @@ public class Inimigo : Caractere
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public virtual void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {

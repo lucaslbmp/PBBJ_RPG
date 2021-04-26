@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : Caractere
 {
     public Inventario inventarioPrefab; // referência ao objeto prefab criado do inventário
-    Inventario inventario;
+    [HideInInspector] public Inventario inventario;
     public HealthBar healthBarPrefab; // referência ao objeto prefab criado da HealthBar
     HealthBar healthBar;
 
@@ -75,22 +75,31 @@ public class Player : Caractere
                 //print("Acertou: " + DanoObjeto.NomeObjeto);
                 switch (DanoObjeto.tipoItem) // confere o tipo de coletável com o qual o player colidiu
                 {
+                    //case Item.TipoItem.MOEDA:
+                    //    // DeveDesaparecer = true;
+                    //    DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar moeda ao inventario
+                    //    break;
                     case Item.TipoItem.MOEDA:
-                        // DeveDesaparecer = true;
+                    case Item.TipoItem.DIAMANTE:
+                    case Item.TipoItem.CHAVE:
+                    case Item.TipoItem.LIVRO:
+                    case Item.TipoItem.PERGAMINHO:
+                    case Item.TipoItem.COROA:
                         DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar moeda ao inventario
                         break;
+
                     case Item.TipoItem.HEALTH:
                         DeveDesaparecer = AjustePontosDano(DanoObjeto.quantidade); // ajustar saude do player
                         break;
-                    case Item.TipoItem.DIAMANTE:
-                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar diamante ao inventario
-                        break;
-                    case Item.TipoItem.CHAVE:
-                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar chave ao inventario
-                        break;
-                    case Item.TipoItem.PERGAMINHO:
-                        DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar pergaminho ao inventario
-                        break;
+                    //case Item.TipoItem.DIAMANTE:
+                    //    DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar diamante ao inventario
+                    //    break;
+                    //case Item.TipoItem.CHAVE:
+                    //    DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar chave ao inventario
+                    //    break;
+                    //case Item.TipoItem.PERGAMINHO:
+                    //    DeveDesaparecer = inventario.AddItem(DanoObjeto); // adicionar pergaminho ao inventario
+                    //    break;
                     default:
                         break;
                 }

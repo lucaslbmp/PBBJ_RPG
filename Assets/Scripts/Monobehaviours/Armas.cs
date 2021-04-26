@@ -117,17 +117,17 @@ public class Armas : MonoBehaviour
     }
 
         public void Awake()
-    {
-        if(municaoPiscina == null)
         {
-            municaoPiscina = new List<GameObject>();
-        }
-        for (int i=0;i<tamanhoPiscina;i++)
-        {
-            GameObject municaoO = Instantiate(municaoPrefab);
-            municaoO.SetActive(false);
-            municaoPiscina.Add(municaoO);
-        }
+            if(municaoPiscina == null)
+            {
+                municaoPiscina = new List<GameObject>();
+            }
+            for (int i=0;i<tamanhoPiscina;i++)
+            {
+                GameObject municaoO = Instantiate(municaoPrefab);
+                municaoO.SetActive(false);
+                municaoPiscina.Add(municaoO);
+            }
     }
 
     // Update is called once per frame

@@ -30,16 +30,16 @@ public class Anciao : Caractere
                 mensagemCoroutine = StartCoroutine(CaractereFala("ANCIÃO: Use a chave para localizar o pergaminho!", duracaoMensagem)); // inicie a corrotina de fala do caractere
             }
         }
-        else
-        {
-            if(!collision.gameObject.CompareTag("Inimigo"))
-                gameObject.GetComponent<Perambular>().Retornar(true); // Se o caractere colidir com um objeto, retornar (i.e., dar meia-volta)
-        }
+        //else
+        //{
+        //    if(!collision.gameObject.CompareTag("Inimigo"))
+        //        gameObject.GetComponent<Perambular>().Retornar(true); // Se o caractere colidir com um objeto, retornar (i.e., dar meia-volta)
+        //}
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        gameObject.GetComponent<Perambular>().Retornar(false); // Se o caractere deixar de colidir com um objeto, parar de retornar
+        //gameObject.GetComponent<Perambular>().Retornar(false); // Se o caractere deixar de colidir com um objeto, parar de retornar
         //if (collision.gameObject.CompareTag("Player"))
         //{
         //    if (mensagemCoroutine != null)

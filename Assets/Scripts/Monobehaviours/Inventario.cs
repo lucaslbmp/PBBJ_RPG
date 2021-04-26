@@ -7,7 +7,7 @@ public class Inventario : MonoBehaviour
     public GameObject slotPrefab; // objeto que recebe o prefab slot
     public const int numSlots = 5; //numero fixo de slots
     Image[] itemImagens = new Image[numSlots]; // array de imagens
-    Item[] itens = new Item[numSlots]; // array de itens
+    [HideInInspector] public Item[] itens = new Item[numSlots]; // array de itens
     GameObject[] slots = new GameObject[numSlots]; // array de Slots
 
     public Dictionary<string, int> itensColetados = new Dictionary<string, int>(); // dicionario de itens coletados pelo player na cena atual
@@ -50,7 +50,7 @@ public class Inventario : MonoBehaviour
                 quantidadeTexto.enabled = true;
                 quantidadeTexto.text = itens[i].quantidade.ToString("00");
                 AtualizarListaColetaveis(itemToAdd.tipoItem.ToString(), itens[i].quantidade);
-                //GameManager.ImprimeListaColetaveis(itensColetados);
+                GameManager.ImprimeListaColetaveis(itensColetados);
                 return true;
             }
             else if(itens[i] == null)
@@ -64,16 +64,37 @@ public class Inventario : MonoBehaviour
                 quantidadeTexto.enabled = true;
                 quantidadeTexto.text = itens[i].quantidade.ToString("00");
                 AtualizarListaColetaveis(itemToAdd.tipoItem.ToString());
-                //GameManager.ImprimeListaColetaveis(itensColetados);
+                GameManager.ImprimeListaColetaveis(itensColetados);
                 return true;
             }
         }
         return false;
     }
 
+    public void RemoveItem(Item itemToRemove)
+    {
+        for (int i = 0; i < itens.Length; i++)
+        {
+            if(itens[i] != null)
+            {
+                if (itens[i].tipoItem == itemToRemove.tipoItem)
+                {
+                    itens[i] = null;
+                    itemImagens[i].enabled = false;
+                    Slot slotScript = slots[i].gameObject.GetComponent<Slot>();
+                    Text quantidadeTexto = slotScript.qtdTexto;
+                    quantidadeTexto.enabled = false;
+                }
+            }
+        }
+    }
+
     public void AtualizarListaColetaveis(string tipoColetavel)
     {
-        itensColetados.Add(tipoColetavel, 1);
+        if (!itensColetados.ContainsKey(tipoColetavel))
+            itensColetados.Add(tipoColetavel, 1);
+        else
+            itensColetados.Remove(tipoColetavel);
     }
 
     public void AtualizarListaColetaveis(string tipoColetavel, int quantidade)

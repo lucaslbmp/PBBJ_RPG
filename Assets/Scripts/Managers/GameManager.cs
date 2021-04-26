@@ -22,9 +22,10 @@ public class GameManager : MonoBehaviour
         None,
         Rpg_lvl_01,
         Rpg_lvl_02,
-        Rpg_lvl_03
+        Rpg_lvl_03,
+        Rpg_Congratulations
     }
-    public Nivel nivelAtual; 
+    public static Nivel nivelAtual; 
 
     private void Awake()
     {
@@ -124,6 +125,21 @@ public class GameManager : MonoBehaviour
     public static void ExibirMensagem(string mensagem)
     {
         mensagemCanvas.AtualizarCanvas(mensagem);
+    }
+
+    public void  CarregarInicio()
+    {
+        SceneManager.LoadScene("Lab5_RPGSetup");
+    }
+
+    public void CarregarFaseUm()
+    {
+        SceneManager.LoadScene(Enum.GetName(typeof(Nivel),1));
+    }
+
+    public void CarregarCreditos()
+    {
+        SceneManager.LoadScene("Lab5_RPGCreditos");
     }
 
     // Update is called once per frame

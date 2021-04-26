@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3535592227734657282}
   - component: {fileID: 717452988385887805}
   - component: {fileID: 6122647074122315938}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: CoracaoO
   m_TagString: Coletavel
   m_Icon: {fileID: 0}

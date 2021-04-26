@@ -51,7 +51,6 @@ public class Perambular : MonoBehaviour
     {
         while (true)
         {
-            EscolhaNovoAngulo(movimentoOrtogonal);
             EscolhaNovoPontoFinal();
             if (movimentoOrtogonal)
             {
@@ -77,29 +76,27 @@ public class Perambular : MonoBehaviour
             anguloAtual += Random.Range(0, 360);
             anguloAtual = Mathf.Repeat(anguloAtual, 360);
         }
-        print(anguloAtual);
+        //print(anguloAtual);
     }
 
     public virtual void EscolhaNovoPontoFinal()
     {
-        //print("Entrou");
         //anguloAtual += Random.Range(0, 360);
         //anguloAtual = Mathf.Repeat(anguloAtual, 360);
-        //print(anguloAtual);
         //if (!perseguePlayer) // Se o Inimigo for o NPC (Ancião)...
         //{
         //    anguloAtual -= (int)anguloAtual % 90; //... arrendondar o angulo para multiplos de 90°
-        //    print(anguloAtual);
         //}
+        EscolhaNovoAngulo(movimentoOrtogonal);
         posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual); // Alterado: vetor posiçao randomico sempre parte da posiçao do Inimigo
-        print(posicaoFinal);
+        //print(posicaoFinal);
     }
     void AtualizaDirecaoAnimacao(float angulo)
     {
         float anguloRad = angulo * Mathf.Deg2Rad;
         float dirX = Mathf.Cos(anguloRad);
         float dirY = Mathf.Sin(anguloRad);
-        print((dirX, dirY));
+        //print((dirX, dirY));
         animator.SetFloat("dirX",dirX);
         animator.SetFloat("dirY", dirY);
     }
@@ -131,43 +128,43 @@ public class Perambular : MonoBehaviour
         animator.SetBool("Caminhando",false);
     }
 
-    public void Retornar(bool retornar)
-    {
-        if (retornar)
-        {
-            if (PerambularCoroutine != null)
-            {
-                StopCoroutine(PerambularCoroutine);
-            }
-            //if(VoltarCoroutine != null)
-                VoltarCoroutine = StartCoroutine(Voltar());
-        }
-        else
-        {
-            if (VoltarCoroutine != null)
-            {
-                StopCoroutine(VoltarCoroutine);
-            }
-            if (PerambularCoroutine != null)
-                PerambularCoroutine = StartCoroutine(RotinaPerambular());
-        }
+    //public void Retornar(bool retornar)
+    //{
+    //    if (retornar)
+    //    {
+    //        if (PerambularCoroutine != null)
+    //        {
+    //            StopCoroutine(PerambularCoroutine);
+    //        }
+    //        //if(VoltarCoroutine != null)
+    //            VoltarCoroutine = StartCoroutine(Voltar());
+    //    }
+    //    else
+    //    {
+    //        if (VoltarCoroutine != null)
+    //        {
+    //            StopCoroutine(VoltarCoroutine);
+    //        }
+    //        if (PerambularCoroutine != null)
+    //            PerambularCoroutine = StartCoroutine(RotinaPerambular());
+    //    }
         
-    }
+    //}
 
-    public IEnumerator Voltar()
-    {
-        while (true)
-        {
-            anguloAtual += 180;
-            anguloAtual = Mathf.Repeat(anguloAtual, 360);
-            posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual);
-            MoverCoroutine = StartCoroutine(Mover(rb2D, velocidadeCorrente));
-            yield return new WaitForSeconds(intervaloMudancaDirecao);
-            PerambularCoroutine = StartCoroutine(RotinaPerambular());
-        }
-    }
+    //public IEnumerator Voltar()
+    //{
+    //    while (true)
+    //    {
+    //        anguloAtual += 180;
+    //        anguloAtual = Mathf.Repeat(anguloAtual, 360);
+    //        posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual);
+    //        MoverCoroutine = StartCoroutine(Mover(rb2D, velocidadeCorrente));
+    //        yield return new WaitForSeconds(intervaloMudancaDirecao);
+    //        PerambularCoroutine = StartCoroutine(RotinaPerambular());
+    //    }
+    //}
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player") && perseguePlayer)
         {
