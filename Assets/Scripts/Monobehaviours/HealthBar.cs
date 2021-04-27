@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Classe que gerencia a barra de vida
+/// </summary>
+
 public class HealthBar : MonoBehaviour
 {
     public PontosDano pontosDano; //Objeto de leitura dos dados de quantos pontos tem o player
@@ -17,16 +21,16 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         //print(caractere);
-        maxPontosDano = caractere.MaxPontosDano;
+        maxPontosDano = caractere.MaxPontosDano;            // Inicializa os pontos de dano do caractere
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(caractere != null)
+        if(caractere != null)                                           // Se o caractere nao é nulo...
         {
-            medidorImagem.fillAmount = pontosDano.valor / maxPontosDano;
-            pdTexto.text = "PD: " + (medidorImagem.fillAmount * 100);
+            medidorImagem.fillAmount = pontosDano.valor / maxPontosDano;    // Atualizo o medidor (barra) da HealthBar
+            pdTexto.text = "PD: " + (medidorImagem.fillAmount * 100);       // Atualizo o texto que mostra o valor de saude no caractere
         }
         
     }

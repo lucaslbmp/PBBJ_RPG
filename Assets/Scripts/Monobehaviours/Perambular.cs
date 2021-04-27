@@ -31,170 +31,134 @@ public class Perambular : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        velocidadeCorrente = velocidadePerambular;
-        rb2D = GetComponent<Rigidbody2D>();
-        PerambularCoroutine = StartCoroutine(RotinaPerambular());
-        circleCollider = GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();                            // Obtem Animator do caractere
+        velocidadeCorrente = velocidadePerambular;                      // Inicializa a velocidade atual como a vel. de perambular
+        rb2D = GetComponent<Rigidbody2D>();                             // Obtem rigidbody do caractere
+        PerambularCoroutine = StartCoroutine(RotinaPerambular());       // Inicializa a corrotina de perambular
+        circleCollider = GetComponent<CircleCollider2D>();              // Obtem o componente CircleCollider2D
         //posicaoFinal = transform.position;
     }
 
     private void OnDrawGizmos()
     {
-        if(circleCollider != null)
+        if(circleCollider != null)                                              // Se o CircleCollider não é nulo...
         {
-            Gizmos.DrawWireSphere(transform.position,circleCollider.radius);
+            Gizmos.DrawWireSphere(transform.position,circleCollider.radius); // Desenha circunferencia com o radio do CircleCollider
         }
     }
 
+    // Corrotina que controla o movimento de perambular
     public IEnumerator RotinaPerambular()
     {
         while (true)
         {
-            EscolhaNovoPontoFinal();
-            if (movimentoOrtogonal)
+            EscolhaNovoPontoFinal();                    // Escolhe novo ponto final aleatório
+            if (movimentoOrtogonal)                     // Se o caractere se movimenta de maneira ortogonal (ex.: NPC)
             {
-                AtualizaDirecaoAnimacao(anguloAtual);
+                AtualizaDirecaoAnimacao(anguloAtual);   // Atualiza a animaçao do caractere para coincidir com a direçao de movimento
             }
-            if(MoverCoroutine != null)
+            if(MoverCoroutine != null)                  // Se a corrotina de movimento está sendo executada...
             {
-                StopCoroutine(MoverCoroutine);
+                StopCoroutine(MoverCoroutine);            // Para a corrotina de movimento
             }
-            MoverCoroutine = StartCoroutine(Mover(rb2D,velocidadeCorrente));
-            yield return new WaitForSeconds(intervaloMudancaDirecao);
+            MoverCoroutine = StartCoroutine(Mover(rb2D,velocidadeCorrente));        // Inicia a corrotina de movimento com a velocidade atual
+            yield return new WaitForSeconds(intervaloMudancaDirecao);               // Aguarda um intervalo
         }
+    }
+
+    // Metodo que escolhe um novo angulo aleatorio para o qual o caractere caminhará se ele estiver no modo de perambular
+
+    public virtual void EscolhaNovoPontoFinal()
+    {
+        EscolhaNovoAngulo(movimentoOrtogonal);      // Escolhe 
+        posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual); // Alterado: vetor posiçao randomico sempre parte da posiçao do Inimigo
     }
 
     void EscolhaNovoAngulo(bool movimentoOrtogonal)
     {
-        if (movimentoOrtogonal)
+        if (movimentoOrtogonal)                             // Se o caractere se movimenta ortogonalmente
         {
-            anguloAtual = (int)(Random.Range(0,4))*90f;
+            anguloAtual = (int)(Random.Range(0, 4)) * 90f;     // Angulo atual recebe um novo angulo multiplo de 90°
         }
-        else
+        else                                                // Caso contrario...
         {
-            anguloAtual += Random.Range(0, 360);
-            anguloAtual = Mathf.Repeat(anguloAtual, 360);
+            anguloAtual += Random.Range(0, 360);            // Angulo atual recebe um incremento de 0 a 360° 
+            anguloAtual = Mathf.Repeat(anguloAtual, 360);   // Repete-se até que o angulo estja entre o angulo atual e 360°
         }
         //print(anguloAtual);
     }
 
-    public virtual void EscolhaNovoPontoFinal()
-    {
-        //anguloAtual += Random.Range(0, 360);
-        //anguloAtual = Mathf.Repeat(anguloAtual, 360);
-        //if (!perseguePlayer) // Se o Inimigo for o NPC (Ancião)...
-        //{
-        //    anguloAtual -= (int)anguloAtual % 90; //... arrendondar o angulo para multiplos de 90°
-        //}
-        EscolhaNovoAngulo(movimentoOrtogonal);
-        posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual); // Alterado: vetor posiçao randomico sempre parte da posiçao do Inimigo
-        //print(posicaoFinal);
-    }
+    // Metodo que recebe a direçao (angulo) do caractere e atualiza a animaçao do caractere dependendo da direçao 
     void AtualizaDirecaoAnimacao(float angulo)
     {
         float anguloRad = angulo * Mathf.Deg2Rad;
         float dirX = Mathf.Cos(anguloRad);
         float dirY = Mathf.Sin(anguloRad);
-        //print((dirX, dirY));
         animator.SetFloat("dirX",dirX);
         animator.SetFloat("dirY", dirY);
     }
 
+    // Recebe um angulo e retorna um vetor com este angulo 
     Vector3 Vetor3ParaAngulo(float anguloEntradaGraus)
     {
-        float anguloEntradaRadianos = anguloEntradaGraus * Mathf.Deg2Rad;
-        return new Vector3(Mathf.Cos(anguloEntradaRadianos),Mathf.Sin(anguloEntradaRadianos),0);
+        float anguloEntradaRadianos = anguloEntradaGraus * Mathf.Deg2Rad;   // Transforma o angulo de graus para radianos 
+        return new Vector3(Mathf.Cos(anguloEntradaRadianos),Mathf.Sin(anguloEntradaRadianos),0); // Retorna um vetor com o angulo de entrada
     }
 
+    // Corrotina que gerencia o movimento do player
     public IEnumerator Mover(Rigidbody2D rbParaMover,float velocidade)
     {
-        float distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;
-        while(distanciaFaltante > float.Epsilon)
+        float distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;     // Calcula distance faltante até o destino
+        while(distanciaFaltante > float.Epsilon)                         // Enquanto a ditsancia faltante for maior que zero
         {
-            if (alvoTransform != null)
+            if (alvoTransform != null)                          // Se o transform do alvo não for nulo...
             {
-                posicaoFinal = alvoTransform.position;
+                posicaoFinal = alvoTransform.position;          // posição final recebe a posição do alvo
             }
-            if(rbParaMover != null)
+            if(rbParaMover != null)                             // Se o rigidBody do inimigo nao for nulo...
             {
-                animator.SetBool("Caminhando",true);
-                Vector3 novaPosicao = Vector3.MoveTowards(rbParaMover.position,posicaoFinal,velocidade*Time.deltaTime);
-                rb2D.MovePosition(novaPosicao);
-                distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;
+                animator.SetBool("Caminhando",true);            // Alterar flag "Caminhando" do Animator para true
+                // Nova posição recebe uma posiçao intermediaria entre a posição do caractere e o destino
+                Vector3 novaPosicao = Vector3.MoveTowards(rbParaMover.position,posicaoFinal,velocidade*Time.deltaTime); 
+                rb2D.MovePosition(novaPosicao);                             // Move o rigidbody do inimigo até a nova posição
+                distanciaFaltante = (transform.position - posicaoFinal).sqrMagnitude;       // Atualiza a distancia faltante
             }
-            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();                          // Aguarda o FixedUpdate
         }
-        animator.SetBool("Caminhando",false);
+        animator.SetBool("Caminhando",false);               // Muda a flag Caminhando para false
     }
-
-    //public void Retornar(bool retornar)
-    //{
-    //    if (retornar)
-    //    {
-    //        if (PerambularCoroutine != null)
-    //        {
-    //            StopCoroutine(PerambularCoroutine);
-    //        }
-    //        //if(VoltarCoroutine != null)
-    //            VoltarCoroutine = StartCoroutine(Voltar());
-    //    }
-    //    else
-    //    {
-    //        if (VoltarCoroutine != null)
-    //        {
-    //            StopCoroutine(VoltarCoroutine);
-    //        }
-    //        if (PerambularCoroutine != null)
-    //            PerambularCoroutine = StartCoroutine(RotinaPerambular());
-    //    }
-        
-    //}
-
-    //public IEnumerator Voltar()
-    //{
-    //    while (true)
-    //    {
-    //        anguloAtual += 180;
-    //        anguloAtual = Mathf.Repeat(anguloAtual, 360);
-    //        posicaoFinal = transform.position + Vetor3ParaAngulo(anguloAtual);
-    //        MoverCoroutine = StartCoroutine(Mover(rb2D, velocidadeCorrente));
-    //        yield return new WaitForSeconds(intervaloMudancaDirecao);
-    //        PerambularCoroutine = StartCoroutine(RotinaPerambular());
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && perseguePlayer)
+        if(collision.gameObject.CompareTag("Player") && perseguePlayer)     // Se colidiu com o player e é do tipo que persegue o player
         {
-            velocidadeCorrente = velocidadePerseguicao;
-            alvoTransform = collision.gameObject.transform;
-            if(MoverCoroutine != null)
+            velocidadeCorrente = velocidadePerseguicao;             // Velocidade atual recebe a velocidade de perseguiçao
+            alvoTransform = collision.gameObject.transform;         // Transform do alvo recebe o transform do player
+            if (MoverCoroutine != null)                             // Se a corrotina de movimento for nula...
             {
-                StopCoroutine(MoverCoroutine);
+                StopCoroutine(MoverCoroutine);                      // Para corrotina de movimento
             }
-            MoverCoroutine = StartCoroutine(Mover(rb2D,velocidadePerseguicao));
+            MoverCoroutine = StartCoroutine(Mover(rb2D,velocidadePerseguicao)); // Inicia corrotina de movimento
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))              // Se colidiu com o player...
         {
-            animator.SetBool("Caminhando",false);
-            velocidadeCorrente = velocidadePerambular;
-            if (MoverCoroutine != null)
+            animator.SetBool("Caminhando",false);                   // Muda flag "caminhando" do Animator para false
+            velocidadeCorrente = velocidadePerambular;              // Velocidade atual recebe velocidade de perambular
+            if (MoverCoroutine != null)                             // Se a corrotina de movimento for nula...
             {
-                StopCoroutine(MoverCoroutine);
+                StopCoroutine(MoverCoroutine);                      // Para corrotina de movimento
             }
-            alvoTransform = null;
+            alvoTransform = null;                                   // Tranform do alvo recebe null (sem alvo)
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(rb2D.position,posicaoFinal,Color.red);
+        Debug.DrawLine(rb2D.position,posicaoFinal,Color.red);   // Desenha linha entre a posiçao do inimigo e a posiçao final
     }
 }
